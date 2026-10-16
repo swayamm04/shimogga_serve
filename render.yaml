@@ -1,10 +1,6 @@
 services:
-  - type: web
+  - type: static
     name: shimogga-service
-    runtime: node
-    plan: free
     buildCommand: npm install && npm run build
-    startCommand: npm start
-    envVars:
-      - key: NODE_VERSION
-        value: 20.18.0
+    staticPublishPath: ./out
+    pullRequestPreviewsEnabled: true
