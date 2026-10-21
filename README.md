@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Karnataka Local Services Directory (Multi-City & Shivamogga Network)
+
+A modern, full-stack verified local business and service directory platform built for Karnataka cities (Shivamogga, Bengaluru, Mysuru, Hubballi-Dharwad, Mangaluru, Belagavi, Davanagere, Ballari, Tumakuru, Udupi, Hassan, Kalaburagi).
+
+---
+
+## Architecture Overview
+
+```
+Shimogga_service/
+├── backend/                  # Node.js + Express + MongoDB REST API
+│   ├── config/               # Database connection (MongoDB / In-memory fallback)
+│   ├── controllers/          # Business, Admin, Auth, Review, Lead controllers
+│   ├── middleware/           # JWT auth and role verification middleware
+│   ├── models/               # Mongoose models (Business, User, Review, Lead, etc.)
+│   ├── routes/               # API endpoints (/api/businesses, /api/admin, /api/auth, etc.)
+│   ├── scripts/              # DB maintenance and cleaning scripts
+│   ├── seed/                 # Pre-populated directory seed data
+│   ├── server.js             # Express entry point (Port 5000)
+│   └── .env.example          # Backend environment template
+│
+├── frontend/                 # Next.js 15 (App Router) + TypeScript + Tailwind CSS
+│   ├── app/                  # App Router pages (Home, Services, Business details, Admin, Profile)
+│   ├── components/           # Reusable UI components (Navbar, Footer, ServiceCard, CategoryIcon)
+│   ├── context/              # React Contexts (CityContext, AuthContext)
+│   ├── data/                 # Static data & configuration (cities.ts, services.ts)
+│   └── lib/                  # Axios API client & utility functions
+```
+
+---
+
+## Key Features
+
+1. **Multi-City Support**:
+   - Covers 12 major Karnataka cities with dynamic area selection.
+   - City state maintained globally across pages with persistent selection.
+   - Backend multi-city case-insensitive and alias matching (`Shimoga` / `Shivamogga`).
+
+2. **WhatsApp Direct Onboarding**:
+   - Zero-friction business listing flow: `+ Add Business` buttons and pricing cards route directly to WhatsApp with pre-filled inquiry text.
+   - Preserves complete legacy multi-step registration form for future online self-service onboarding.
+
+3. **Admin Business Management**:
+   - Dedicated administrative portal with secure business creation (`POST /api/admin/businesses`).
+   - Direct tier assignment (Basic, Standard, Premium), verification badge toggles, and contact management.
+
+4. **Clean, Premium Aesthetic**:
+   - High-contrast, accessibility-compliant typography and layout.
+   - Minimalist, smooth fading quote rotator in the top announcement bar.
+   - Completely free of informal emojis and neon shadow glows.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+- MongoDB (local or Atlas)
 
+### 1. Backend Setup
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd backend
+npm install
+cp .env.example .env
+# Edit .env with your MongoDB URI and JWT_SECRET
+npm run seed     # (Optional) Seed initial verified businesses
+npm run dev      # Starts on http://localhost:5000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev      # Starts on http://localhost:3000
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Build for Production
+```bash
+cd frontend
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+Private & Confidential — Freelancing / Client Project.
