@@ -121,6 +121,10 @@ export const adminAPI = {
     api.delete<any>(`/admin/businesses/${id}`),
   getUsers: () =>
     api.get<any>('/admin/users'),
+  getLeads: () =>
+    api.get<any>('/admin/leads'),
+  getActivityLogs: () =>
+    api.get<any>('/admin/activity-logs'),
   createCategory: (data: any) =>
     api.post<any>('/admin/categories', data),
   deleteCategory: (id: string) =>

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { useCity } from "@/context/CityContext";
 import { getWhatsAppListingUrl } from "@/data/cities";
@@ -18,14 +19,28 @@ import {
   Phone,
   MapPin,
   ChevronDown,
+  ChevronUp,
   Quote,
+  Home,
+  LayoutGrid,
 } from "lucide-react";
+import CategoriesMegaMenu from "@/components/CategoriesMegaMenu";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const { user, logout } = useAuth();
   const { selectedCity, setSelectedCity, cities } = useCity();
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
+  const toggleMegaMenu = () => {
+    setMegaMenuOpen((prev) => !prev);
+  };
 
   const quotes = [
     "Supporting verified local businesses builds stronger communities.",
@@ -109,23 +124,34 @@ export default function Navbar() {
 
           {/* Navigation Links */}
           <nav className="navbar-nav">
-            <Link href={`/services?city=${encodeURIComponent(selectedCity)}`}>
-              <Search size={15} /> Directory
+            <Link href="/">
+              <Home size={15} /> Home
             </Link>
-            <Link href="/#emergency">
-              Emergency Directory
-            </Link>
-            <a
-              href={whatsAppListingHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem" }}
-            >
-              List Your Business
-            </a>
-            <Link href="/about">
-              About
-            </Link>
+            <div className="categories-trigger" style={{ display: "inline-flex" }}>
+              <button
+                type="button"
+                onClick={toggleMegaMenu}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.45rem",
+                  padding: "0.45rem 0.9rem",
+                  borderRadius: "6px",
+                  border: megaMenuOpen ? "1.5px solid #ea580c" : "1.5px solid #cbd5e1",
+                  background: megaMenuOpen ? "#fff7ed" : "#f8fafc",
+                  color: megaMenuOpen ? "#ea580c" : "#1e293b",
+                  fontSize: "0.88rem",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  transition: "all 0.15s ease",
+                }}
+                title="Toggle categories menu"
+              >
+                <LayoutGrid size={15} color={megaMenuOpen ? "#ea580c" : "#475569"} />
+                <span>Categories</span>
+                {megaMenuOpen ? <ChevronUp size={14} color="#ea580c" /> : <ChevronDown size={14} color="#64748b" />}
+              </button>
+            </div>
 
             {/* Role specific portals */}
             {user?.role === "admin" && (
@@ -311,35 +337,39 @@ export default function Navbar() {
           </div>
 
           <Link
-            href={`/services?city=${encodeURIComponent(selectedCity)}`}
+            href="/"
             onClick={() => setMobileMenuOpen(false)}
             style={{ textDecoration: "none", color: "var(--text)", fontWeight: 600, padding: "0.5rem 0" }}
           >
-            Explore All Businesses
+            Home
           </Link>
-          <Link
-            href="/#emergency"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{ textDecoration: "none", color: "var(--text)", fontWeight: 600, padding: "0.5rem 0" }}
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setMegaMenuOpen(true);
+            }}
+            style={{
+              textDecoration: "none",
+              color: "var(--text)",
+              fontWeight: 600,
+              padding: "0.5rem 0",
+              background: "transparent",
+              border: "none",
+              textAlign: "left",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              cursor: "pointer",
+              fontSize: "0.95rem",
+              width: "100%",
+            }}
           >
-            Emergency Directory
-          </Link>
-          <a
-            href={whatsAppListingHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{ textDecoration: "none", color: "var(--text)", fontWeight: 600, padding: "0.5rem 0" }}
-          >
-            List Your Business (WhatsApp)
-          </a>
-          <Link
-            href="/about"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{ textDecoration: "none", color: "var(--text)", fontWeight: 600, padding: "0.5rem 0" }}
-          >
-            About Directory
-          </Link>
+            <span style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
+              <LayoutGrid size={16} /> Categories
+            </span>
+            <ChevronDown size={15} />
+          </button>
 
           {user?.role === "admin" && (
             <Link
@@ -403,6 +433,13 @@ export default function Navbar() {
           )}
         </div>
       )}
+
+      {/* ── Categories Mega Menu ── */}
+      <CategoriesMegaMenu
+        isOpen={megaMenuOpen}
+        onClose={() => setMegaMenuOpen(false)}
+        selectedCity={selectedCity}
+      />
     </>
   );
 }

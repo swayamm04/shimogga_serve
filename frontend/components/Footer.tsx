@@ -1,13 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Phone, Mail, MapPin, ShieldCheck, MessageCircle } from "lucide-react";
 import { useCity } from "@/context/CityContext";
 import { getWhatsAppListingUrl, CITIES_DATA } from "@/data/cities";
 
 export default function Footer() {
+  const pathname = usePathname();
   const { selectedCity, setSelectedCity } = useCity();
   const whatsAppListingHref = getWhatsAppListingUrl(selectedCity);
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <footer style={{ background: "#09131e", color: "#94a3b8", paddingTop: "3.5rem", paddingBottom: "2rem", borderTop: "1px solid #1e293b" }}>
@@ -51,7 +57,7 @@ export default function Footer() {
                 <MapPin size={14} color="#ea580c" /> Kuvempu Road, Shivamogga &amp; Karnataka Network
               </span>
               <span style={{ display: "flex", alignItems: "center", gap: "0.45rem", color: "#cbd5e1" }}>
-                <Phone size={14} color="#ea580c" /> Citizen Helplines: 112 / 108 / 1912
+                <Phone size={14} color="#ea580c" /> Direct Directory Support &amp; Enquiries
               </span>
               <span style={{ display: "flex", alignItems: "center", gap: "0.45rem", color: "#cbd5e1" }}>
                 <Mail size={14} color="#ea580c" /> contact@shimogaservice.com
@@ -65,25 +71,25 @@ export default function Footer() {
               TOP DIRECTORIES
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.85rem" }}>
-              <Link href={`/services?city=${encodeURIComponent(selectedCity)}&category=healthcare-hospitals`} style={{ color: "#94a3b8", textDecoration: "none" }}>
+              <Link href={`/?city=${encodeURIComponent(selectedCity)}&category=healthcare-hospitals#businesses`} style={{ color: "#94a3b8", textDecoration: "none" }}>
                 Healthcare &amp; Hospitals
               </Link>
-              <Link href={`/services?city=${encodeURIComponent(selectedCity)}&category=restaurants-cafes`} style={{ color: "#94a3b8", textDecoration: "none" }}>
+              <Link href={`/?city=${encodeURIComponent(selectedCity)}&category=restaurants-cafes#businesses`} style={{ color: "#94a3b8", textDecoration: "none" }}>
                 Restaurants &amp; Dining
               </Link>
-              <Link href={`/services?city=${encodeURIComponent(selectedCity)}&category=home-services-repairs`} style={{ color: "#94a3b8", textDecoration: "none" }}>
+              <Link href={`/?city=${encodeURIComponent(selectedCity)}&category=home-services-repairs#businesses`} style={{ color: "#94a3b8", textDecoration: "none" }}>
                 Home Repairs &amp; Cleaning
               </Link>
-              <Link href={`/services?city=${encodeURIComponent(selectedCity)}&category=automobile-garages`} style={{ color: "#94a3b8", textDecoration: "none" }}>
+              <Link href={`/?city=${encodeURIComponent(selectedCity)}&category=automobile-garages#businesses`} style={{ color: "#94a3b8", textDecoration: "none" }}>
                 Automobile &amp; Garages
               </Link>
-              <Link href={`/services?city=${encodeURIComponent(selectedCity)}&category=education-coaching`} style={{ color: "#94a3b8", textDecoration: "none" }}>
+              <Link href={`/?city=${encodeURIComponent(selectedCity)}&category=education-coaching#businesses`} style={{ color: "#94a3b8", textDecoration: "none" }}>
                 Education &amp; Coaching
               </Link>
-              <Link href={`/services?city=${encodeURIComponent(selectedCity)}&category=beauty-salon-spa`} style={{ color: "#94a3b8", textDecoration: "none" }}>
+              <Link href={`/?city=${encodeURIComponent(selectedCity)}&category=beauty-salon-spa#businesses`} style={{ color: "#94a3b8", textDecoration: "none" }}>
                 Salons &amp; Wellness Spas
               </Link>
-              <Link href={`/services?city=${encodeURIComponent(selectedCity)}&category=real-estate-builders`} style={{ color: "#94a3b8", textDecoration: "none" }}>
+              <Link href={`/?city=${encodeURIComponent(selectedCity)}&category=real-estate-builders#businesses`} style={{ color: "#94a3b8", textDecoration: "none" }}>
                 Real Estate &amp; Contractors
               </Link>
             </div>
@@ -109,8 +115,8 @@ export default function Footer() {
               <Link href="/dashboard" style={{ color: "#94a3b8", textDecoration: "none" }}>
                 Visitor &amp; Leads Tracker
               </Link>
-              <Link href="/#pricing" style={{ color: "#94a3b8", textDecoration: "none" }}>
-                Directory Plans &amp; Benefits
+              <Link href="/partners" style={{ color: "#94a3b8", textDecoration: "none" }}>
+                Merchant Partnership
               </Link>
               <Link href="/admin" style={{ color: "#94a3b8", textDecoration: "none" }}>
                 Master Admin Portal
@@ -167,7 +173,7 @@ export default function Footer() {
           </div>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1.25rem" }}>
-            <Link href="/about" style={{ color: "#64748b", textDecoration: "none" }}>
+            <Link href="/#about" style={{ color: "#64748b", textDecoration: "none" }}>
               About
             </Link>
             <Link href="/safety" style={{ color: "#64748b", textDecoration: "none" }}>

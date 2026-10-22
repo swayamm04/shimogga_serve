@@ -21,8 +21,8 @@ const safetyStandards = [
     desc: "Public emergency lines for District Hospital casualty, City Police Control, Fire Emergency, and MESCOM are monitored and validated for 24/7 direct dial connectivity.",
   },
   {
-    title: "Transparent Resident Feedback",
-    desc: "Reviews are subject to moderation to eliminate automated spam and fake reviews. Citizens can post genuine feedback regarding punctuality, billing, and work quality.",
+    title: "Directory Accuracy & Contact Verification",
+    desc: "Listings are continuously audited for operational status, phone number validity, and physical location accuracy so citizens get direct, working connections.",
   },
   {
     title: "Zero Commission or Payment Interference",

@@ -76,8 +76,8 @@ export default function PartnersPage() {
             <Link href="/auth/register-business" className="btn-primary" style={{ padding: "0.75rem 1.6rem" }}>
               Register Your Business
             </Link>
-            <Link href="/#pricing" className="btn-secondary" style={{ padding: "0.75rem 1.4rem" }}>
-              View Subscription Plans
+            <Link href="/services" className="btn-secondary" style={{ padding: "0.75rem 1.4rem" }}>
+              Explore Directory
             </Link>
           </div>
         </div>

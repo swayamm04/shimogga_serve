@@ -45,7 +45,7 @@ export default function NotFound() {
               { label: "Restaurants", href: "/services?category=restaurants-cafes" },
               { label: "Home Repairs", href: "/services?category=home-services-repairs" },
               { label: "Garages", href: "/services?category=automobile-garages" },
-              { label: "Public Helplines", href: "/#emergency" },
+              { label: "All Businesses", href: "/services" },
             ].map((item) => (
               <Link
                 key={item.href}

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const sections = [
   {
     title: "Information We Collect",
-    content: "We collect information you provide directly to us when creating a merchant listing, submitting customer inquiries, writing reviews, or contacting support. This includes business representative names, business names, telephone numbers, email addresses, and physical addresses in Shivamogga. For visitors using public search, we track aggregate metrics such as search counts, locality filters, and click-to-call events to compile performance analytics for directory merchants.",
+    content: "We collect information you provide directly to us when creating a merchant listing, submitting customer inquiries, or contacting support. This includes business representative names, business names, telephone numbers, email addresses, and physical addresses in Shivamogga. For visitors using public search, we track aggregate metrics such as search counts, locality filters, and click-to-call events to compile performance analytics for directory merchants.",
   },
   {
     title: "How We Use Directory Information",

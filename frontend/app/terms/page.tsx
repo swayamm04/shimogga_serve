@@ -24,8 +24,8 @@ const sections = [
     content: "All agreements, quotes, guarantees, and payments for goods or services arranged through listings found on Shivamogga Services are solely between the consumer and the service provider. Shivamogga Services does not intermediate payments, charge transaction commissions, or act as an escrow agent.",
   },
   {
-    title: "Reviews and Community Guidelines",
-    content: "Users submitting customer reviews agree that their statements are truthful, based on genuine interactions, and free from defamatory, profane, or malicious content. We reserve the right to remove non-compliant reviews.",
+    title: "Directory Content and Accuracy Guidelines",
+    content: "All listed information is provided for informational and contact purposes. Users and merchants are responsible for ensuring that all posted contact numbers, addresses, and business descriptions remain current and accurate.",
   },
   {
     title: "Governing Law and Dispute Resolution",

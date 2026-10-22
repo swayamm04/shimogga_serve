@@ -53,7 +53,7 @@ export default function RegisterUserPage() {
           <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
             <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#0f172a" }}>Create Citizen Account</h1>
             <p style={{ color: "#64748b", fontSize: "0.85rem", marginTop: "0.2rem" }}>
-              Join Shivamogga Services to submit reviews and save service contacts
+              Join Shivamogga Services to access verified local services and business contacts
             </p>
           </div>
 

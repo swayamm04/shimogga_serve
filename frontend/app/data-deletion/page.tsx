@@ -31,7 +31,7 @@ export default function DataDeletionPage() {
               How to Request Deletion
             </h2>
             <p style={{ color: "#475569", fontSize: "0.9rem", lineHeight: 1.65, marginBottom: "1.25rem" }}>
-              To permanently remove your merchant listing, reviews, or user account from the directory, please send an email from your registered email address to:
+              To permanently remove your merchant listing or user account from the directory, please send an email from your registered email address to:
             </p>
             <div style={{ background: "#f8fafc", border: "1px solid #cbd5e1", borderRadius: "6px", padding: "1rem", display: "flex", alignItems: "center", gap: "0.5rem", color: "#0f172a", fontWeight: 700 }}>
               <Mail size={18} color="#ea580c" />

@@ -9,6 +9,8 @@ const {
   getUsersAdmin,
   createCategory,
   deleteCategory,
+  getLeadsAdmin,
+  getActivityLogsAdmin,
 } = require('../controllers/adminController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -22,6 +24,8 @@ router.post('/businesses', createBusinessAdmin);
 router.put('/businesses/:id', updateBusinessAdmin);
 router.delete('/businesses/:id', deleteBusinessAdmin);
 router.get('/users', getUsersAdmin);
+router.get('/leads', getLeadsAdmin);
+router.get('/activity-logs', getActivityLogsAdmin);
 router.post('/categories', createCategory);
 router.delete('/categories/:id', deleteCategory);
 

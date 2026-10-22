@@ -371,3 +371,34 @@ exports.createBusinessAdmin = async (req, res) => {
     res.status(500).json({ success: false, message: err.message || 'Server error creating business' });
   }
 };
+
+// @desc    Get All Inquiries / Leads (Admin)
+// @route   GET /api/admin/leads
+// @access  Private (Role: 'admin')
+exports.getLeadsAdmin = async (req, res) => {
+  try {
+    const leads = await Lead.find()
+      .populate('business', 'name slug contact location')
+      .sort({ createdAt: -1 })
+      .limit(60);
+    res.status(200).json({ success: true, count: leads.length, data: leads });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Server error fetching inquiries' });
+  }
+};
+
+// @desc    Get Activity Logs (Admin)
+// @route   GET /api/admin/activity-logs
+// @access  Private (Role: 'admin')
+exports.getActivityLogsAdmin = async (req, res) => {
+  try {
+    const logs = await VisitLog.find()
+      .populate('business', 'name slug location.city')
+      .sort({ timestamp: -1 })
+      .limit(60);
+    res.status(200).json({ success: true, count: logs.length, data: logs });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Server error fetching activity logs' });
+  }
+};
+
